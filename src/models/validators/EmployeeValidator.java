@@ -1,4 +1,4 @@
-package validators;
+package models.validators;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ private static String _validateCode(String code,Boolean code_duplicate_check_fla
     //すでに登録されている社員番号との重複チェック
     if(code_duplicate_check_flag){
         EntityManager em = DBUtil.createEntityManager();
-        long employees_count = (long)em.createNamedQuery("checkRegisteredCode",long.class)
+        long employees_count = (long)em.createNamedQuery("checkRegisteredCode",Long.class)
                 .setParameter("code", code)
                 .getSingleResult();
         em.close();
@@ -55,7 +55,7 @@ private static String _validateCode(String code,Boolean code_duplicate_check_fla
 
     //社員名の必須入力チェック
     private static String _validateName(String name) {
-        if (name.equals("")) {
+        if(name.equals("")) {
             return "氏名を入力してください。";
         }
 
