@@ -33,63 +33,65 @@ public class LoginServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    //ログイン画面を表示
+    // ログイン画面を表示
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         request.setAttribute("_token", request.getSession().getId());
-        request.setAttribute("hasError",false);
-        if(request.getSession().getAttribute("flush") != null){
+        request.setAttribute("hasError", false);
+        if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login/login.jsp");
-        rd.forward(request, response);	}
+        rd.forward(request, response);
+    }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    //ログイン処理を実行
+    // ログイン処理を実行
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        Boolean check_result =false;
+        // 認証結果を格納する変数
+        Boolean check_result = false;
 
         String code = request.getParameter("code");
         String plain_pass = request.getParameter("password");
 
         Employee e = null;
 
-        if(code != null && !code.equals("") && plain_pass != null && !plain_pass.equals("")){
+        if(code != null && !code.equals("") && plain_pass != null && !plain_pass.equals("")) {
             EntityManager em = DBUtil.createEntityManager();
 
-            String password = EncryptUtil.getPasswordEncrypt(plain_pass, (String)this.getServletContext().getAttribute("pepper"));
+            String password = EncryptUtil.getPasswordEncrypt(
+                    plain_pass,
+                    (String)this.getServletContext().getAttribute("pepper")
+                    );
 
-            //社員番号とパスワードが正しいかチェックする
-            try{
-                e = em.createNamedQuery("checkLoginCodeAndPassword",Employee.class)
-                        .setParameter("code", code)
-                        .setParameter("pass", password)
-                        .getSingleResult();
-            }catch(NoResultException ex){}
+            // 社員番号とパスワードが正しいかチェックする
+            try {
+                e = em.createNamedQuery("checkLoginCodeAndPassword", Employee.class)
+                      .setParameter("code", code)
+                      .setParameter("pass", password)
+                      .getSingleResult();
+            } catch(NoResultException ex) {}
 
             em.close();
 
-            if(e != null){
+            if(e != null) {
                 check_result = true;
             }
         }
 
-        if(!check_result){
-            //認証できなかったらログイン画面に戻る
+        if(!check_result) {
+            // 認証できなかったらログイン画面に戻る
             request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("hasError", true);
             request.setAttribute("code", code);
 
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login/login.jsp");
-                    rd.forward(request, response);
-
-        }else{
-            //認証出来たらログイン状態にしてトップページへリダイレクト
+            rd.forward(request, response);
+        } else {
+            // 認証できたらログイン状態にしてトップページへリダイレクト
             request.getSession().setAttribute("login_employee", e);
 
             request.getSession().setAttribute("flush", "ログインしました。");
