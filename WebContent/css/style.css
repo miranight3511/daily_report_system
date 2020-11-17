@@ -80,6 +80,15 @@ button{
     background-color: #d4edda;
 }
 
+#flush_error{
+    width: 100%;
+    padding-top:28px;
+    padding-left: 2%;
+    padding-bottom:15px;
+    color: #721c24;
+    background-color: #f8d7da;
+}
+
 table#employee_list th{
     width: 30%;
     padding: 10px 2%;
@@ -147,10 +156,9 @@ table#report_list .report_action{
     width: 13%;
 }
 
-pre{
+pre {
     font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
-    }
-
+}
 h3{
     font-size: larger;
 }
