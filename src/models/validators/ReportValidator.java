@@ -9,6 +9,11 @@ public class ReportValidator {
     public static List<String> validate(Report r) {
         List<String> errors = new ArrayList<String>();
 
+        String syoudan_sts_error = _validateSyoudan_sts(r.getSyoudan_sts());
+        if(!syoudan_sts_error.equals("")) {
+            errors.add(syoudan_sts_error);
+        }
+
         String title_error = _validateTitle(r.getTitle());
         if(!title_error.equals("")) {
             errors.add(title_error);
@@ -20,6 +25,14 @@ public class ReportValidator {
         }
 
         return errors;
+    }
+
+    private static String _validateSyoudan_sts(String syoudan_sts) {
+        if(syoudan_sts == null || syoudan_sts.equals("")) {
+            return "商談状況を入力してください。";
+            }
+
+        return "";
     }
 
     private static String _validateTitle(String title) {

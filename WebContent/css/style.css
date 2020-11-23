@@ -23,6 +23,7 @@ h1 {
 }
 
 h2{
+    color: red;
     font-size: 36px;
     margin-bottom: 15px;
 }
@@ -140,20 +141,24 @@ table#report_list th{
 }
 
 table#report_list .report_name{
-    width: 20%;
+    width: 15%;
     padding: 10px 2%;
 }
 
 table#report_list .report_date{
-    width: 20%;
+    width: 14%;
+}
+
+table#report_list .report_syoudan_sts{
+    width: 35%;
 }
 
 table#report_list .report_title{
-    width: 37%;
+    width: 14%;
 }
 
 table#report_list .report_action{
-    width: 13%;
+    width: 12%;
 }
 
 pre {

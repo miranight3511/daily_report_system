@@ -18,6 +18,12 @@
 <c:out value="${sessionScope.login_employee.name}" />
 <br /><br />
 
+<label for="syoudan_sts">商談状況</label><br />
+<input type="text" name="syoudan_sts" value="${report.syoudan_sts}" />
+<br /><br />
+
+
+
 <label for="title">タイトル</label><br />
 <input type="text" name="title" value="${report.title}" />
 <br /><br />

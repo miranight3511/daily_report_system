@@ -48,6 +48,10 @@ public class Report {
     @Column(name = "report_date", nullable = false)
     private Date report_date;
 
+    @Column(name = "syoudan_sts", length = 255, nullable = false)
+    private String syoudan_sts;
+
+
     @Column(name = "title", length = 255, nullable = false)
     private String title;
 
@@ -83,6 +87,14 @@ public class Report {
 
     public void setReport_date(Date report_date) {
         this.report_date = report_date;
+    }
+
+    public String getSyoudan_sts() {
+        return syoudan_sts;
+    }
+
+    public void setSyoudan_sts(String syoudan_sts) {
+        this.syoudan_sts = syoudan_sts;
     }
 
     public String getTitle() {
