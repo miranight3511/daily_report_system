@@ -29,7 +29,7 @@ public class ReportValidator {
 
     private static String _validateSyoudan_sts(String syoudan_sts) {
         if(syoudan_sts == null || syoudan_sts.equals("")) {
-            return "商談状況を入力してください。";
+            return "商談状況を入力してください。予定なしの場合「特になし」と記入";
             }
 
         return "";

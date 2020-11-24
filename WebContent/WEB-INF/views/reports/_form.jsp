@@ -19,7 +19,7 @@
 <br /><br />
 
 <label for="syoudan_sts">商談状況</label><br />
-<input type="text" name="syoudan_sts" value="${report.syoudan_sts}" />
+<input type="text" name="syoudan_sts" id="syoudan_sts" value="${report.syoudan_sts}" size="40"/>
 <br /><br />
 
 

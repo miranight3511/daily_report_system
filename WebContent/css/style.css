@@ -68,6 +68,7 @@ button{
 }
 
 #footer{
+    color: red;
     text-align: center;
 }
 
@@ -141,7 +142,7 @@ table#report_list th{
 }
 
 table#report_list .report_name{
-    width: 15%;
+    width: 10%;
     padding: 10px 2%;
 }
 
