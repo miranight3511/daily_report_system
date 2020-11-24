@@ -142,16 +142,16 @@ table#report_list th{
 }
 
 table#report_list .report_name{
-    width: 10%;
+    width: 12%;
     padding: 10px 2%;
 }
 
 table#report_list .report_date{
-    width: 14%;
+    width: 18%;
 }
 
 table#report_list .report_syoudan_sts{
-    width: 35%;
+    width: 30%;
 }
 
 table#report_list .report_title{
@@ -159,7 +159,10 @@ table#report_list .report_title{
 }
 
 table#report_list .report_action{
-    width: 12%;
+    width: 14%;
+}
+table#report_list .report_admin_flag{
+    width: 3%;
 }
 
 pre {
