@@ -19,10 +19,8 @@
 <br /><br />
 
 <label for="syoudan_sts">商談状況</label><br />
-<input type="text" name="syoudan_sts" id="syoudan_sts" value="${report.syoudan_sts}" size="40"/>
+<input type="text" name="syoudan_sts" id="syoudan_sts" value='${report.syoudan_sts}' size="20"/>
 <br /><br />
-
-
 
 <label for="title">タイトル</label><br />
 <input type="text" name="title" value="${report.title}" />
@@ -32,9 +30,6 @@
 <textarea name="content" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
 
-<label for="admin_flag">クラス</label><br />
-<c:out value="${sessionScope.login_employee.admin_flag}" />
-<br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>

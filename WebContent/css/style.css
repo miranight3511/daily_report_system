@@ -77,7 +77,7 @@ button{
     padding-top: 28px;
     padding-left: 2%;
     padding-bottom: 28px;
-    margin-bottom: 	15px;
+    margin-bottom:  15px;
     color: #155724;
     background-color: #d4edda;
 }
@@ -142,16 +142,16 @@ table#report_list th{
 }
 
 table#report_list .report_name{
-    width: 12%;
+    width: 10%;
     padding: 10px 2%;
 }
 
 table#report_list .report_date{
-    width: 18%;
+    width: 14%;
 }
 
 table#report_list .report_syoudan_sts{
-    width: 30%;
+    width: 35%;
 }
 
 table#report_list .report_title{
@@ -159,10 +159,7 @@ table#report_list .report_title{
 }
 
 table#report_list .report_action{
-    width: 14%;
-}
-table#report_list .report_admin_flag{
-    width: 3%;
+    width: 12%;
 }
 
 pre {

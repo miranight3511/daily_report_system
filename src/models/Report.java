@@ -22,6 +22,10 @@ import javax.persistence.Table;
             query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
             ),
     @NamedQuery(
+            name = "getBubunReports",
+            query = "SELECT r FROM Employee AS r WHERE r.admin_flag = 0 ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
             name = "getReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r"
             ),
@@ -65,8 +69,6 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @Column(name = "report_admin_flag", nullable = false)
-    private Date report_admin_flag;
 
     public Integer getId() {
         return id;
@@ -130,14 +132,6 @@ public class Report {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
-    }
-
-    public Date getReport_admin_flag() {
-        return report_admin_flag;
-    }
-
-    public void setReport_admin_flag(Date report_admin_flag) {
-        this.report_admin_flag = report_admin_flag;
     }
 
 }

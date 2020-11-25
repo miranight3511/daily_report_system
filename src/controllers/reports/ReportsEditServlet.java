@@ -36,14 +36,19 @@ public class ReportsEditServlet extends HttpServlet {
         // TODO Auto-generated method stub
         EntityManager em = DBUtil.createEntityManager();
 
+        //該当のIDのレポート1件のみをデータベースから取得
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
         Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
         if(r != null && login_employee.getId() == r.getEmployee().getId()){
+
+            //レポート情報とセッションIDをリクエストスコープに登録
             request.setAttribute("report", r);
             request.setAttribute("_token", request.getSession().getId());
+
+            //レポートIDをセッションスコープに登録
             request.getSession().setAttribute("report_id", r.getId());
         }
 
