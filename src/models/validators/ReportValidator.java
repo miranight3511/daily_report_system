@@ -14,6 +14,11 @@ public class ReportValidator {
             errors.add(title_error);
         }
 
+        String syoudan_sts_error = _validateSyoudan_sts(r.getSyoudan_sts());
+        if(!syoudan_sts_error.equals("")) {
+            errors.add(syoudan_sts_error);
+        }
+
         String content_error = _validateContent(r.getContent());
         if(!content_error.equals("")) {
             errors.add(content_error);
@@ -25,6 +30,14 @@ public class ReportValidator {
     private static String _validateTitle(String title) {
         if(title == null || title.equals("")) {
             return "タイトルを入力してください。";
+            }
+
+        return "";
+    }
+
+    private static String _validateSyoudan_sts(String syoudan_sts) {
+        if(syoudan_sts == null || syoudan_sts.equals("")) {
+            return "商談状況を入力してください。ない場合「特になし」と記入";
             }
 
         return "";

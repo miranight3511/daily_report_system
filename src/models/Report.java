@@ -48,6 +48,9 @@ public class Report {
     @Column(name = "report_date", nullable = false)
     private Date report_date;
 
+    @Column(name = "syoudan_sts", nullable = false)
+    private String syoudan_sts;
+
     @Column(name = "title", length = 255, nullable = false)
     private String title;
 
@@ -115,5 +118,13 @@ public class Report {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getSyoudan_sts() {
+        return syoudan_sts;
+    }
+
+    public void setSyoudan_sts(String syoudan_sts) {
+        this.syoudan_sts = syoudan_sts;
     }
 }

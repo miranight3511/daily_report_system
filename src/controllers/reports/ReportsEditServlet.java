@@ -32,17 +32,23 @@ public class ReportsEditServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        // 該当のIDのメッセージ1件のみをデータベースから取得
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
-        Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
-        if(r != null && login_employee.getId() == r.getEmployee().getId()) {
+        Employee login_employee = (Employee) request.getSession().getAttribute("login_employee");
+        if (r != null && login_employee.getId() == r.getEmployee().getId()) {
+
+            // メッセージ情報とセッションIDをリクエストスコープに登録
             request.setAttribute("report", r);
             request.setAttribute("_token", request.getSession().getId());
+
+            // メッセージIDをセッションスコープに登録
             request.getSession().setAttribute("report_id", r.getId());
         }
 
