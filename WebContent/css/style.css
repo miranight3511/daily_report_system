@@ -8,7 +8,7 @@ body{
 #header{
     width: 100%
     height: 70px;
-    background-color: #333333;
+    background-color: #000000;
 }
 
 #content{
@@ -23,7 +23,7 @@ h1 {
 }
 
 h2{
-    color: red;
+    color: #0000ff;
     font-size: 36px;
     margin-bottom: 15px;
 }
@@ -68,7 +68,7 @@ button{
 }
 
 #footer{
-    color: red;
+    color: #0000ff;
     text-align: center;
 }
 
