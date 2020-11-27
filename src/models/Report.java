@@ -22,6 +22,10 @@ import javax.persistence.Table;
             query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
             ),
     @NamedQuery(
+            name = "getIppanReports",
+            query = "SELECT r FROM Employee AS r WHERE r.admin_flag = 0 ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
             name = "getReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r"
             ),

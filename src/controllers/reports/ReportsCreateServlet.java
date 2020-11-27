@@ -60,10 +60,12 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
+            // バリデーションを実行してエラーがあったら新規登録のフォームに戻る
             List<String> errors = ReportValidator.validate(r);
             if(errors.size() > 0) {
                 em.close();
 
+                // フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("report", r);
                 request.setAttribute("errors", errors);
@@ -71,12 +73,15 @@ public class ReportsCreateServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
                 rd.forward(request, response);
             } else {
+
+                // データベースに保存
                 em.getTransaction().begin();
                 em.persist(r);
                 em.getTransaction().commit();
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
+                // indexのページにリダイレクト
                 response.sendRedirect(request.getContextPath() + "/reports/index");
             }
         }

@@ -27,6 +27,7 @@ public class ReportValidator {
         return errors;
     }
 
+    // タイトルの必須入力チェック
     private static String _validateTitle(String title) {
         if(title == null || title.equals("")) {
             return "タイトルを入力してください。";
@@ -34,7 +35,7 @@ public class ReportValidator {
 
         return "";
     }
-
+    // 商談状況の必須入力チェック
     private static String _validateSyoudan_sts(String syoudan_sts) {
         if(syoudan_sts == null || syoudan_sts.equals("")) {
             return "商談状況を入力してください。ない場合「特になし」と記入";
@@ -43,6 +44,7 @@ public class ReportValidator {
         return "";
     }
 
+    // メッセージの必須入力チェック
     private static String _validateContent(String content) {
         if(content == null || content.equals("")) {
             return "内容を入力してください。";

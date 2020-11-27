@@ -53,10 +53,12 @@ public class ReportsUpdateServlet extends HttpServlet {
             // 更新日時のみ上書き
             r.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
+            // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
             List<String> errors = ReportValidator.validate(r);
             if(errors.size() > 0) {
                 em.close();
 
+                // フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("report", r);
                 request.setAttribute("errors", errors);
