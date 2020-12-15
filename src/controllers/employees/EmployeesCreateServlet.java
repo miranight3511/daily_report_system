@@ -38,6 +38,8 @@ public class EmployeesCreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = (String)request.getParameter("_token");
         if(_token != null && _token.equals(request.getSession().getId())) {
+
+            // EntityManagerのオブジェクトを生成
             EntityManager em = DBUtil.createEntityManager();
 
             Employee e = new Employee();
@@ -68,10 +70,15 @@ public class EmployeesCreateServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/new.jsp");
                 rd.forward(request, response);
             } else {
-                em.getTransaction().begin();
-                em.persist(e);
+
+                em.getTransaction().begin(); //データベースの整合性を保つためにトランズアクションを開始する
+
+                em.persist(e); // insert文で登録する
+
                 em.getTransaction().commit();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
+
+                // EntityManagerの利用を終了する
                 em.close();
 
                 response.sendRedirect(request.getContextPath() + "/employees/index");

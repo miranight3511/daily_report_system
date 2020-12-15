@@ -32,10 +32,14 @@ public class EmployeesEditServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // EntityManagerのオブジェクトを生成
         EntityManager em = DBUtil.createEntityManager();
 
+        // idを1件取得してを表示する
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
 
+        // EntityManagerの利用を終了する
         em.close();
 
         request.setAttribute("employee", e);

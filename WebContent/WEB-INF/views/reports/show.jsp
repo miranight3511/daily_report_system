@@ -39,6 +39,10 @@
                                 <fmt:formatDate value="${report.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                         </tr>
+                        <tr>
+                        <th>クラス</th>
+                            <td><c:out value="${report.employee.admin_flag}" /></td>
+                        </tr>
                     </tbody>
                 </table>
 

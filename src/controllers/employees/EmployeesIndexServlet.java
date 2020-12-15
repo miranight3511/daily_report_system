@@ -33,6 +33,8 @@ public class EmployeesIndexServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // EntityManagerのオブジェクトを生成
         EntityManager em = DBUtil.createEntityManager();
 
         int page = 1;
@@ -47,6 +49,7 @@ public class EmployeesIndexServlet extends HttpServlet {
         long employees_count = (long)em.createNamedQuery("getEmployeesCount", Long.class)
                                        .getSingleResult();
 
+        // EntityManagerの利用を終了する
         em.close();
 
         request.setAttribute("employees", employees);

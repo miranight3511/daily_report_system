@@ -23,7 +23,7 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getIppanReports",
-            query = "SELECT r FROM Employee AS r WHERE r.admin_flag = 0 ORDER BY r.id DESC"
+            query = "SELECT r FROM Report AS r WHERE r.employee.admin_flag = 0 and r.employee <> :emp ORDER BY r.id DESC"
             ),
     @NamedQuery(
             name = "getReportsCount",
@@ -36,6 +36,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getMyReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
+            ),
+    @NamedQuery(
+            name = "getIppanReportsCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee.admin_flag = 0 and r.employee <> :employee"
             )
 })
 @Entity

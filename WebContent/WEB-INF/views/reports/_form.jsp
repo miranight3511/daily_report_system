@@ -30,5 +30,9 @@
 <textarea name="content" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
 
+<label for="employee_admin_flag">クラス</label><br />
+<c:out value="${sessionScope.login_employee.admin_flag}" />
+<br /><br />
+
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>

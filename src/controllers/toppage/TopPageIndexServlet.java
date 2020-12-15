@@ -20,7 +20,7 @@ import utils.DBUtil;
  */
 @WebServlet("/index.html")
 public class TopPageIndexServlet extends HttpServlet {
-        private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,35 +33,51 @@ public class TopPageIndexServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // EntityManagerのオブジェクトを生成
         EntityManager em = DBUtil.createEntityManager();
 
-        Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
+        Employee login_employee = (Employee) request.getSession().getAttribute("login_employee");
 
         int page;
-        try{
+        try {
             page = Integer.parseInt(request.getParameter("page"));
-        } catch(Exception e) {
+        } catch (Exception e) {
             page = 1;
         }
-
+        List<Report> Ippan_reports = em.createNamedQuery("getIppanReports", Report.class)
+                .setParameter("emp", login_employee)
+                .setFirstResult(5 * (page - 1))
+                .setMaxResults(5)
+                .getResultList();
 
         List<Report> reports = em.createNamedQuery("getMyAllReports", Report.class)
-                                  .setParameter("employee", login_employee)
-                                  .setFirstResult(15 * (page - 1))
-                                  .setMaxResults(15)
-                                  .getResultList();
+                .setParameter("employee", login_employee)
+                .setFirstResult(5 * (page - 1))
+                .setMaxResults(5)
+                .getResultList();
 
-        long reports_count = (long)em.createNamedQuery("getMyReportsCount", Long.class)
-                                     .setParameter("employee", login_employee)
-                                     .getSingleResult();
+        long Ippan_reports_count = (long) em.createNamedQuery("getIppanReportsCount", Long.class)
+                .setParameter("employee", login_employee)
+                .getSingleResult();
 
+        long reports_count = (long) em.createNamedQuery("getMyReportsCount", Long.class)
+                .setParameter("employee", login_employee)
+                .getSingleResult();
+
+        //EntityManagerを終了する
         em.close();
+
+        //リクエストスコープに登録
+        request.setAttribute("Ippan_reports", Ippan_reports);
         request.setAttribute("reports", reports);
+        request.setAttribute("Ippan_reports_count", Ippan_reports_count);
         request.setAttribute("reports_count", reports_count);
         request.setAttribute("page", page);
 
-        if(request.getSession().getAttribute("flush") != null) {
+        if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }

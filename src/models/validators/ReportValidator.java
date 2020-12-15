@@ -7,6 +7,8 @@ import models.Report;
 
 public class ReportValidator {
     public static List<String> validate(Report r) {
+
+        // 入力項目チェック（バリデーション）
         List<String> errors = new ArrayList<String>();
 
         String title_error = _validateTitle(r.getTitle());
