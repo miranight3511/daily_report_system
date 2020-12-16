@@ -8,6 +8,7 @@
             ・<c:out value="${error}" /><br />
         </c:forEach>
 
+
     </div>
 </c:if>
 <label for="report_date">日付</label><br />

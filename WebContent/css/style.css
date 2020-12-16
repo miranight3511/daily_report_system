@@ -146,7 +146,7 @@ table#report_list th{
 }
 
 table#report_list .report_name{
-    width: 10%;
+    width: 15%;
     padding: 10px 2%;
 }
 
@@ -166,7 +166,7 @@ table#report_list .report_action{
     width: 12%;
 }
 table#report_list .employee_admin_flag{
-    width: 9%;
+    width: 7%;
     text-align: center;
 }
 pre {

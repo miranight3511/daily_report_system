@@ -8,7 +8,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>日報　一覧</h2>
+        <h2>日報 一覧</h2>
         <table id="report_list">
             <tbody>
                 <tr>
@@ -26,7 +26,7 @@
                         <td class="syoudan_sts"><c:out value="${report.syoudan_sts}" /></td>
                         <td class="report_title">${report.title}</td>
                         <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
-                        <td class="<td class="report_name"><c:out value="${report.employee.admin_flag}" /></td>"><c:out value="${report.employee.name}" /></td>
+                        <td class="employee_admin_flag"><c:out value="${report.employee.admin_flag}" /></td>
                     </tr>
                 </c:forEach>
             </tbody>
